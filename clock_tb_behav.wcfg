@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="clock_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="clock_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="95878169000fs"></ZoomStartTime>
+      <ZoomEndTime time="97964169001fs"></ZoomEndTime>
+      <Cursor1Time time="96878169000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="249"></NameColumnWidth>
+      <ValueColumnWidth column_width="116"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="22" />
+   <wvobject fp_name="/clock_tb/clock_en" type="logic">
+      <obj_property name="ElementShortName">clock_en</obj_property>
+      <obj_property name="ObjectShortName">clock_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/CP" type="logic">
+      <obj_property name="ElementShortName">CP</obj_property>
+      <obj_property name="ObjectShortName">CP</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/adjust_minute_en" type="logic">
+      <obj_property name="ElementShortName">adjust_minute_en</obj_property>
+      <obj_property name="ObjectShortName">adjust_minute_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/adjust_hour_en" type="logic">
+      <obj_property name="ElementShortName">adjust_hour_en</obj_property>
+      <obj_property name="ObjectShortName">adjust_hour_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/punctually_report_en" type="logic">
+      <obj_property name="ElementShortName">punctually_report_en</obj_property>
+      <obj_property name="ObjectShortName">punctually_report_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/show_mode" type="logic">
+      <obj_property name="ElementShortName">show_mode</obj_property>
+      <obj_property name="ObjectShortName">show_mode</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/CR" type="logic">
+      <obj_property name="ElementShortName">CR</obj_property>
+      <obj_property name="ObjectShortName">CR</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/tubePosSignal" type="array">
+      <obj_property name="ElementShortName">tubePosSignal[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tubePosSignal[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/tubeShowSignal" type="array">
+      <obj_property name="ElementShortName">tubeShowSignal[6:0]</obj_property>
+      <obj_property name="ObjectShortName">tubeShowSignal[6:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/punctuallyReportSignal" type="logic">
+      <obj_property name="ElementShortName">punctuallyReportSignal</obj_property>
+      <obj_property name="ObjectShortName">punctuallyReportSignal</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/divider_1k/CLK_1k" type="logic">
+      <obj_property name="ElementShortName">CLK_1k</obj_property>
+      <obj_property name="ObjectShortName">CLK_1k</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/divider_1Hz/CLK_1Hz" type="logic">
+      <obj_property name="ElementShortName">CLK_1Hz</obj_property>
+      <obj_property name="ObjectShortName">CLK_1Hz</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/secondCounter/OnesPlace/Q" type="array">
+      <obj_property name="ElementShortName">Q[3:0]</obj_property>
+      <obj_property name="ObjectShortName">Q[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/secondCounter/TensPlace/Q" type="array">
+      <obj_property name="ElementShortName">Q[3:0]</obj_property>
+      <obj_property name="ObjectShortName">Q[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/minuteCounter/OnesPlace/Q" type="array">
+      <obj_property name="ElementShortName">Q[3:0]</obj_property>
+      <obj_property name="ObjectShortName">Q[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/minuteCounter/TensPlace/Q" type="array">
+      <obj_property name="ElementShortName">Q[3:0]</obj_property>
+      <obj_property name="ObjectShortName">Q[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/hourCounter/Q_ones" type="array">
+      <obj_property name="ElementShortName">Q_ones[3:0]</obj_property>
+      <obj_property name="ObjectShortName">Q_ones[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/hourCounter/Q_tens" type="array">
+      <obj_property name="ElementShortName">Q_tens[3:0]</obj_property>
+      <obj_property name="ObjectShortName">Q_tens[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/minuteCounter/TensPlace/CR" type="logic">
+      <obj_property name="ElementShortName">CR</obj_property>
+      <obj_property name="ObjectShortName">CR</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/minuteCounter/TensPlace/EN" type="logic">
+      <obj_property name="ElementShortName">EN</obj_property>
+      <obj_property name="ObjectShortName">EN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/secondCounter/TensPlace/carryBit" type="logic">
+      <obj_property name="ElementShortName">carryBit</obj_property>
+      <obj_property name="ObjectShortName">carryBit</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/hourCounter/CP" type="logic">
+      <obj_property name="ElementShortName">CP</obj_property>
+      <obj_property name="ObjectShortName">CP</obj_property>
+   </wvobject>
+</wave_config>

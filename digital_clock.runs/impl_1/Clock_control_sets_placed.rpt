@@ -1,0 +1,88 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
+| Date         : Wed Mar 22 12:04:17 2023
+| Host         : FengSheng running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file Clock_control_sets_placed.rpt
+| Design       : Clock
+| Device       : xc7a100t
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    19 |
+| Unused register locations in slices containing registers |    91 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      1 |            6 |
+|      2 |            2 |
+|      4 |            7 |
+|      7 |            2 |
+|      9 |            1 |
+|    16+ |            1 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               6 |            6 |
+| No           | No                    | Yes                    |              11 |            5 |
+| No           | Yes                   | No                     |              16 |            4 |
+| Yes          | No                    | No                     |              15 |            5 |
+| Yes          | No                    | Yes                    |              21 |            8 |
+| Yes          | Yes                   | No                     |               8 |            5 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++-----------------------------------------+------------------------------------+------------------------------------------+------------------+----------------+
+|               Clock Signal              |            Enable Signal           |             Set/Reset Signal             | Slice Load Count | Bel Load Count |
++-----------------------------------------+------------------------------------+------------------------------------------+------------------+----------------+
+|  minuteCounter/OnesPlace/CLK            |                                    |                                          |                1 |              1 |
+|  secondCounter/OnesPlace/CLK            |                                    |                                          |                1 |              1 |
+|  secondCounter/TensPlace/carryBit_reg_0 |                                    |                                          |                1 |              1 |
+|  divider_1k/CLK_1k                      |                                    | divider_1Hz/CR                           |                1 |              1 |
+|  divider_1k/CLK_1k                      | shower/tubePos[7]_i_1_n_0          | shower/tubePos[3]_i_1_n_0                |                1 |              1 |
+|  CP_IBUF_BUFG                           |                                    |                                          |                1 |              1 |
+|  minuteCounter/TensPlace/carryBit_reg_0 |                                    | divider_1Hz/CR                           |                1 |              2 |
+|  divider_1Hz/CLK                        |                                    |                                          |                2 |              2 |
+|  minuteCounter/OnesPlace/CLK            | adjust_minute_en_IBUF              | divider_1Hz/CR                           |                2 |              4 |
+|  minuteCounter/TensPlace/carryBit_reg_0 | adjust_hour_en_IBUF                | divider_1Hz/CR                           |                2 |              4 |
+|  secondCounter/OnesPlace/CLK            |                                    | secondCounter/TensPlace/adjust_minute_en |                1 |              4 |
+|  secondCounter/TensPlace/carryBit_reg_0 | adjust_minute_en_IBUF              | divider_1Hz/CR                           |                2 |              4 |
+|  divider_1Hz/CLK                        |                                    | secondCounter/TensPlace/adjust_minute_en |                2 |              4 |
+|  divider_1Hz/CLK                        | hourCounter/E[0]                   |                                          |                2 |              4 |
+|  divider_1k/CLK_1k                      | shower/FSM_sequential_k[3]_i_1_n_0 |                                          |                1 |              4 |
+|  divider_1k/CLK_1k                      | shower/showCode[6]_i_2_n_0         | shower/showCode[6]_i_1_n_0               |                4 |              7 |
+|  divider_1k/CLK_1k                      | shower/tubePos[7]_i_1_n_0          |                                          |                2 |              7 |
+|  divider_1k/CLK_1k                      | clock_en_IBUF                      | divider_1Hz/CR                           |                2 |              9 |
+|  CP_IBUF_BUFG                           |                                    | divider_1k/clear                         |                4 |             16 |
++-----------------------------------------+------------------------------------+------------------------------------------+------------------+----------------+
+
+
