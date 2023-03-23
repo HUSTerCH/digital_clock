@@ -22,8 +22,9 @@
 
 module TubeShower(
     input CLK_1k,
-    input showMode,//for show mode 1, 24h mode clock;mode 2, 12h mode clock
-    input [7:0] hour_num,//lower 4 bits are for hour ones bit,upper 4 bits are for hour tens bit
+    input showMode,//for show mode 0, 24h mode clock;mode 1, 12h mode clock
+    input [4:0] hour_real_num,//lower 4 bits are for hour ones bit,upper 4 bits are for hour tens bit
+    input [7:0] hour,
     input [6:0] second_ones,
     input [6:0] second_tens,
     input [6:0] minute_ones,
@@ -35,8 +36,16 @@ module TubeShower(
     );
     integer k = 0;
     wire [6:0] convert0,convert1;
-    TubeDecoder decoder0(hour_num[3:0] - 4'd2,convert0);
-    TubeDecoder decoder1(hour_num[3:0] + 4'd8,convert1);
+    wire [7:0] hour_12;
+    reg [3:0] convert_ones;
+    always@ (*)
+        begin
+            if (hour_real_num >= 5'd22 || (hour_real_num >= 5'd12 && hour_real_num < 5'd20))
+                convert_ones = hour[3:0] - 2;
+            else if (hour_real_num < 5'd22 && hour_real_num >= 5'd20)
+                convert_ones = hour[3:0] + 8;
+        end
+    TubeDecoder decoder0(convert_ones,convert0);
     always @(posedge CLK_1k)
         begin
             case(k)
@@ -44,11 +53,10 @@ module TubeShower(
 //                show A or P or none for 12/24 hour switch
                     begin
                         tubePos <= 8'b1111_1110;
-                        if (showMode == 1) showCode <= 7'b111_1111;
-                        else if (showMode == 2)
+                        if (showMode == 0) showCode <= 7'b111_1111;
+                        else if (showMode == 1)
                             begin
-//                            wrong,please correct.hour_ones and hour_tens are 7 bit code not number.
-                                if ((hour_num[3:0] > 4'd2 && hour_num[7:4] == 4'd1)||hour_num[7:4] >= 4'd2) showCode <= 7'b000_1100;
+                                if (hour_real_num >= 5'd12) showCode <= 7'b000_1100;
                                 else showCode <= 7'b000_1000;
                             end
                         k <= k + 1;
@@ -89,34 +97,36 @@ module TubeShower(
                         k <= k + 1;
                     end
                 6:
+                // still some problem please correct in Friday
 //                show hour ones bit
                     begin
                         tubePos <= 8'b1011_1111;
-                        if (showMode == 1) showCode <= hour_ones;
-                        else if (showMode == 2)
-                            begin
-                                if (hour_num[3:0] > 4'd2 && hour_num[7:4] == 4'd1)
-                                    begin
-                                        showCode <= convert0;
-                                    end
-                                else if (hour_num[7:4] == 4'd2)
-                                    begin
+                        if (showMode == 0) showCode <= hour_ones;
+                        else if (showMode == 1)
+                            showCode <= convert0;
+//                            begin
+//                                if (hour_real_num >= 5'd12)
+//                                    begin
+//                                        showCode <= convert0;
+//                                    end
+//                                else if (hour_num[7:4] == 5'd2)
+//                                    begin
                                         
-                                        showCode <= convert1;
-                                    end
-                             end
+//                                        showCode <= convert1;
+//                                    end
+//                             end
                         k <= k + 1;
                     end
                 7:
 //                show hour tens bit
                     begin
                         tubePos <= 8'b0111_1111;
-                        if (showMode == 1) showCode <= hour_tens;
-                        else if (showMode == 2)
+                        if (showMode == 0) showCode <= hour_tens;
+                        else if (showMode == 1)
                             begin
-                                if ((hour_num[3:0] > 4'd2 && hour_num[7:4] == 4'd1)||(hour_num[3:0] < 4'd2 && hour_num[7:4] == 4'd2))
+                                if ((hour_real_num > 5'd12 && hour_real_num < 5'd22) || (hour_real_num < 5'd10))
                                     showCode <= 7'b100_0000;
-                                else
+                                else 
                                     showCode <= 7'b111_1001;
                             end
                         k <= k + 1;

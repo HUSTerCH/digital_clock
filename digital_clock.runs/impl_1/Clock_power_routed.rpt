@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date             : Wed Mar 22 12:04:47 2023
+| Date             : Thu Mar 23 22:30:06 2023
 | Host             : FengSheng running 64-bit major release  (build 9200)
 | Command          : report_power -file Clock_power_routed.rpt -pb Clock_power_summary_routed.pb -rpx Clock_power_routed.rpx
 | Design           : Clock
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 9.988        |
+| Total On-Chip Power (W)  | 11.098       |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 9.803        |
-| Device Static (W)        | 0.184        |
+| Dynamic (W)              | 10.889       |
+| Device Static (W)        | 0.208        |
 | Effective TJA (C/W)      | 4.6          |
-| Max Ambient (C)          | 39.4         |
-| Junction Temperature (C) | 70.6         |
+| Max Ambient (C)          | 34.4         |
+| Junction Temperature (C) | 75.6         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,16 +52,16 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     1.212 |      232 |       --- |             --- |
-|   LUT as Logic |     1.153 |      100 |     63400 |            0.16 |
-|   Register     |     0.044 |       77 |    126800 |            0.06 |
+| Slice Logic    |     1.390 |      269 |       --- |             --- |
+|   LUT as Logic |     1.331 |      124 |     63400 |            0.20 |
+|   Register     |     0.044 |       84 |    126800 |            0.07 |
 |   CARRY4       |     0.009 |        4 |     15850 |            0.03 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
-|   Others       |     0.000 |       15 |       --- |             --- |
-| Signals        |     0.907 |      164 |       --- |             --- |
-| I/O            |     7.684 |       23 |       210 |           10.95 |
-| Static Power   |     0.184 |          |           |                 |
-| Total          |     9.988 |          |           |                 |
+|   Others       |     0.000 |       19 |       --- |             --- |
+| Signals        |     1.112 |      198 |       --- |             --- |
+| I/O            |     8.387 |       25 |       210 |           11.90 |
+| Static Power   |     0.208 |          |           |                 |
+| Total          |    11.098 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,16 +71,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     2.222 |       2.132 |      0.090 |
-| Vccaux    |       1.800 |     0.655 |       0.628 |      0.027 |
+| Vccint    |       1.000 |     2.628 |       2.519 |      0.109 |
+| Vccaux    |       1.800 |     0.715 |       0.685 |      0.030 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
-| Vcco18    |       1.800 |     3.638 |       3.634 |      0.004 |
+| Vcco18    |       1.800 |     3.969 |       3.965 |      0.004 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccbram   |       1.000 |     0.002 |       0.000 |      0.002 |
+| Vccbram   |       1.000 |     0.003 |       0.000 |      0.003 |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
@@ -135,20 +135,21 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-----------------+-----------+
-| Name            | Power (W) |
-+-----------------+-----------+
-| Clock           |     9.803 |
-|   divider_1Hz   |     0.079 |
-|   divider_1k    |     0.090 |
-|   hourCounter   |     0.388 |
-|   minuteCounter |     0.495 |
-|     OnesPlace   |     0.260 |
-|     TensPlace   |     0.235 |
-|   secondCounter |     0.512 |
-|     OnesPlace   |     0.228 |
-|     TensPlace   |     0.283 |
-|   shower        |     0.531 |
-+-----------------+-----------+
++----------------------+-----------+
+| Name                 | Power (W) |
++----------------------+-----------+
+| Clock                |    10.889 |
+|   PunctuallyReporter |     0.031 |
+|   divider_1Hz        |     0.100 |
+|   divider_1k         |     0.098 |
+|   hourCounter        |     0.505 |
+|   minuteCounter      |     0.517 |
+|     OnesPlace        |     0.257 |
+|     TensPlace        |     0.260 |
+|   secondCounter      |     0.496 |
+|     OnesPlace        |     0.221 |
+|     TensPlace        |     0.274 |
+|   shower             |     0.713 |
++----------------------+-----------+
 
 

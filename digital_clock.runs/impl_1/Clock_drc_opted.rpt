@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date         : Wed Mar 22 12:04:15 2023
+| Date         : Thu Mar 23 22:29:37 2023
 | Host         : FengSheng running 64-bit major release  (build 9200)
 | Command      : report_drc -file Clock_drc_opted.rpt -pb Clock_drc_opted.pb -rpx Clock_drc_opted.rpx
 | Design       : Clock
@@ -24,12 +24,13 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 1
-+----------+----------+-----------------------------------------------------+------------+
-| Rule     | Severity | Description                                         | Violations |
-+----------+----------+-----------------------------------------------------+------------+
-| CFGBVS-1 | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
-+----------+----------+-----------------------------------------------------+------------+
+             Violations found: 4
++-------------+----------+-------------------------------------------------------------+------------+
+| Rule        | Severity | Description                                                 | Violations |
++-------------+----------+-------------------------------------------------------------+------------+
+| CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties         | 1          |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 3          |
++-------------+----------+-------------------------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -44,6 +45,24 @@ Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_des
  #where value2 is the voltage provided to configuration bank 0
 
 Refer to the device configuration user guide for more information.
+Related violations: <none>
+
+PLHOLDVIO-2#1 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT divider_1Hz/Q[3]_i_2__0 is driving clock pin of 5 cells. This could lead to large hold time violations. Involved cells are:
+secondCounter/OnesPlace/Q_reg[0], secondCounter/OnesPlace/Q_reg[1], secondCounter/OnesPlace/Q_reg[2], secondCounter/OnesPlace/Q_reg[3], secondCounter/OnesPlace/carryBit_reg
+Related violations: <none>
+
+PLHOLDVIO-2#2 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT minuteCounter/TensPlace/Q_ones[3]_i_2 is driving clock pin of 6 cells. This could lead to large hold time violations. Involved cells are:
+hourCounter/Q_ones_reg[0], hourCounter/Q_ones_reg[1], hourCounter/Q_ones_reg[2], hourCounter/Q_ones_reg[3], hourCounter/Q_tens_reg[0], hourCounter/Q_tens_reg[1]
+Related violations: <none>
+
+PLHOLDVIO-2#3 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT secondCounter/TensPlace/Q[3]_i_2 is driving clock pin of 5 cells. This could lead to large hold time violations. Involved cells are:
+minuteCounter/OnesPlace/Q_reg[0], minuteCounter/OnesPlace/Q_reg[1], minuteCounter/OnesPlace/Q_reg[2], minuteCounter/OnesPlace/Q_reg[3], minuteCounter/OnesPlace/carryBit_reg
 Related violations: <none>
 
 

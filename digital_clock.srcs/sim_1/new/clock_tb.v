@@ -21,22 +21,46 @@
 
 
 module clock_tb;
-    reg clock_en,CP,adjust_minute_en,adjust_hour_en,punctually_report_en,show_mode,CR;
+    reg clock_en;
+    reg CR;
+    reg CP;
+    reg adjust_hour_en;
+    reg adjust_minute_en;
+    reg second_stop;
+    reg show_mode;
+    reg punctually_report_en;
+    reg alarm_switch;
+    reg set_alarm_time;
     wire [7:0]tubePosSignal;
     wire [6:0]tubeShowSignal;
     wire punctuallyReportSignal;
-    Clock clock(clock_en,CP,adjust_minute_en,adjust_hour_en,punctually_report_en,show_mode,CR,
-    tubePosSignal,tubeShowSignal,punctuallyReportSignal);
+    wire alarmReportSignal;
+Clock clock(
+     clock_en,
+     CR,
+     CP,
+     adjust_hour_en,
+     adjust_minute_en,
+     second_stop,
+     show_mode,
+     punctually_report_en,
+     alarm_switch,
+     set_alarm_time,
+     tubePosSignal,
+     tubeShowSignal,
+     punctuallyReportSignal,
+     alarmReportSignal
+    );
     always #1 CP = ~CP;
     initial
         begin
             clock_en = 1'b1;
             CP = 1'b1;
-            adjust_minute_en = 1'b1;
-            adjust_hour_en = 1'b1;
-            punctually_report_en = 1'b1;
-            show_mode = 1'b0;
             CR = 1'b1;
+            adjust_hour_en = 1'b1;
+            adjust_minute_en = 1'b1;
+            show_mode = 1'b0;
+            punctually_report_en = 1'b1;
             #400000
             $stop;
          end

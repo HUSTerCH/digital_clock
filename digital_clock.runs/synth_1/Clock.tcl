@@ -41,6 +41,7 @@ read_verilog -library xil_defaultlib {
   D:/vivado_project/digital_clock/digital_clock.srcs/sources_1/new/PunctuallyReporter.v
   D:/vivado_project/digital_clock/digital_clock.srcs/sources_1/new/TubeDecoder.v
   D:/vivado_project/digital_clock/digital_clock.srcs/sources_1/new/TubeShower.v
+  D:/vivado_project/digital_clock/digital_clock.srcs/sources_1/new/TwoToOneSelector.v
   D:/vivado_project/digital_clock/digital_clock.srcs/sources_1/new/Clock.v
 }
 # Mark all dcp files as not used in implementation to prevent them from being

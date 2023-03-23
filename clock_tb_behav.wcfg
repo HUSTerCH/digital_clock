@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="95878169000fs"></ZoomStartTime>
-      <ZoomEndTime time="97964169001fs"></ZoomEndTime>
-      <Cursor1Time time="96878169000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="25530000001fs"></ZoomEndTime>
+      <Cursor1Time time="14940000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="249"></NameColumnWidth>
+      <NameColumnWidth column_width="225"></NameColumnWidth>
       <ValueColumnWidth column_width="116"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="22" />
+   <WVObjectSize size="25" />
    <wvobject fp_name="/clock_tb/clock_en" type="logic">
       <obj_property name="ElementShortName">clock_en</obj_property>
       <obj_property name="ObjectShortName">clock_en</obj_property>
@@ -108,5 +108,17 @@
    <wvobject fp_name="/clock_tb/clock/hourCounter/CP" type="logic">
       <obj_property name="ElementShortName">CP</obj_property>
       <obj_property name="ObjectShortName">CP</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/hour_real_num" type="array">
+      <obj_property name="ElementShortName">hour_real_num[4:0]</obj_property>
+      <obj_property name="ObjectShortName">hour_real_num[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/PunctuallyReporter/reportSignal" type="logic">
+      <obj_property name="ElementShortName">reportSignal</obj_property>
+      <obj_property name="ObjectShortName">reportSignal</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/PunctuallyReporter/flashingTime" type="array">
+      <obj_property name="ElementShortName">flashingTime[3:0]</obj_property>
+      <obj_property name="ObjectShortName">flashingTime[3:0]</obj_property>
    </wvobject>
 </wave_config>
