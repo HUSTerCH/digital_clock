@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date             : Thu Mar 23 22:30:06 2023
+| Date             : Thu Mar 23 23:35:59 2023
 | Host             : FengSheng running 64-bit major release  (build 9200)
 | Command          : report_power -file Clock_power_routed.rpt -pb Clock_power_summary_routed.pb -rpx Clock_power_routed.rpx
 | Design           : Clock
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 11.098       |
+| Total On-Chip Power (W)  | 10.998       |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 10.889       |
-| Device Static (W)        | 0.208        |
+| Dynamic (W)              | 10.792       |
+| Device Static (W)        | 0.206        |
 | Effective TJA (C/W)      | 4.6          |
-| Max Ambient (C)          | 34.4         |
-| Junction Temperature (C) | 75.6         |
+| Max Ambient (C)          | 34.8         |
+| Junction Temperature (C) | 75.2         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,16 +52,16 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     1.390 |      269 |       --- |             --- |
-|   LUT as Logic |     1.331 |      124 |     63400 |            0.20 |
-|   Register     |     0.044 |       84 |    126800 |            0.07 |
-|   CARRY4       |     0.009 |        4 |     15850 |            0.03 |
+| Slice Logic    |     1.311 |      256 |       --- |             --- |
+|   LUT as Logic |     1.250 |      121 |     63400 |            0.19 |
+|   Register     |     0.045 |       80 |    126800 |            0.06 |
+|   CARRY4       |     0.010 |        4 |     15850 |            0.03 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
-|   Others       |     0.000 |       19 |       --- |             --- |
-| Signals        |     1.112 |      198 |       --- |             --- |
-| I/O            |     8.387 |       25 |       210 |           11.90 |
-| Static Power   |     0.208 |          |           |                 |
-| Total          |    11.098 |          |           |                 |
+|   Others       |     0.000 |       17 |       --- |             --- |
+| Signals        |     1.171 |      186 |       --- |             --- |
+| I/O            |     8.310 |       25 |       210 |           11.90 |
+| Static Power   |     0.206 |          |           |                 |
+| Total          |    10.998 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,11 +71,11 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     2.628 |       2.519 |      0.109 |
-| Vccaux    |       1.800 |     0.715 |       0.685 |      0.030 |
+| Vccint    |       1.000 |     2.606 |       2.499 |      0.107 |
+| Vccaux    |       1.800 |     0.709 |       0.679 |      0.030 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
-| Vcco18    |       1.800 |     3.969 |       3.965 |      0.004 |
+| Vcco18    |       1.800 |     3.932 |       3.928 |      0.004 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
@@ -138,18 +138,18 @@ Table of Contents
 +----------------------+-----------+
 | Name                 | Power (W) |
 +----------------------+-----------+
-| Clock                |    10.889 |
-|   PunctuallyReporter |     0.031 |
-|   divider_1Hz        |     0.100 |
-|   divider_1k         |     0.098 |
-|   hourCounter        |     0.505 |
-|   minuteCounter      |     0.517 |
-|     OnesPlace        |     0.257 |
-|     TensPlace        |     0.260 |
-|   secondCounter      |     0.496 |
-|     OnesPlace        |     0.221 |
-|     TensPlace        |     0.274 |
-|   shower             |     0.713 |
+| Clock                |    10.792 |
+|   PunctuallyReporter |     0.026 |
+|   divider_1Hz        |     0.075 |
+|   divider_1k         |     0.102 |
+|   hourCounter        |     0.671 |
+|   minuteCounter      |     0.481 |
+|     OnesPlace        |     0.244 |
+|     TensPlace        |     0.237 |
+|   secondCounter      |     0.487 |
+|     OnesPlace        |     0.236 |
+|     TensPlace        |     0.250 |
+|   shower             |     0.600 |
 +----------------------+-----------+
 
 

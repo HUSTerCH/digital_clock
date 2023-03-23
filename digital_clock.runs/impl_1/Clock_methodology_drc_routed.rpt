@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date         : Thu Mar 23 22:30:05 2023
+| Date         : Thu Mar 23 23:35:58 2023
 | Host         : FengSheng running 64-bit major release  (build 9200)
 | Command      : report_methodology -file Clock_methodology_drc_routed.rpt -pb Clock_methodology_drc_routed.pb -rpx Clock_methodology_drc_routed.rpx
 | Design       : Clock
@@ -23,12 +23,11 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 84
+             Violations found: 80
 +-----------+----------+-----------------------------+------------+
 | Rule      | Severity | Description                 | Violations |
 +-----------+----------+-----------------------------+------------+
 | TIMING-17 | Warning  | Non-clocked sequential cell | 80         |
-| TIMING-20 | Warning  | Non-clocked latch           | 4          |
 +-----------+----------+-----------------------------+------------+
 
 2. REPORT DETAILS
@@ -431,26 +430,6 @@ Related violations: <none>
 TIMING-17#80 Warning
 Non-clocked sequential cell  
 The clock pin shower/tubePos_reg[7]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#1 Warning
-Non-clocked latch  
-The latch shower/convert_ones_reg[0] cannot be properly analyzed as its control pin shower/convert_ones_reg[0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#2 Warning
-Non-clocked latch  
-The latch shower/convert_ones_reg[1] cannot be properly analyzed as its control pin shower/convert_ones_reg[1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#3 Warning
-Non-clocked latch  
-The latch shower/convert_ones_reg[2] cannot be properly analyzed as its control pin shower/convert_ones_reg[2]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#4 Warning
-Non-clocked latch  
-The latch shower/convert_ones_reg[3] cannot be properly analyzed as its control pin shower/convert_ones_reg[3]/G is not reached by a timing clock
 Related violations: <none>
 
 

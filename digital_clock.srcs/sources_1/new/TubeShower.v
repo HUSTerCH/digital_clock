@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Luo Chang
 // 
 // Create Date: 2023/03/17 20:49:59
 // Design Name: 
@@ -35,15 +35,15 @@ module TubeShower(
     output reg [6:0] showCode
     );
     integer k = 0;
-    wire [6:0] convert0,convert1;
+    wire [6:0] convert0;
     wire [7:0] hour_12;
-    reg [3:0] convert_ones;
+    reg [3:0] convert_ones,convert_tens;
     always@ (*)
         begin
-            if (hour_real_num >= 5'd22 || (hour_real_num >= 5'd12 && hour_real_num < 5'd20))
-                convert_ones = hour[3:0] - 2;
-            else if (hour_real_num < 5'd22 && hour_real_num >= 5'd20)
-                convert_ones = hour[3:0] + 8;
+            if (hour_real_num == 5'd20 || hour_real_num == 5'd21)
+                convert_ones <= hour[3:0] + 8;
+            else
+                convert_ones <= hour[3:0] - 2;
         end
     TubeDecoder decoder0(convert_ones,convert0);
     always @(posedge CLK_1k)
@@ -101,30 +101,20 @@ module TubeShower(
 //                show hour ones bit
                     begin
                         tubePos <= 8'b1011_1111;
-                        if (showMode == 0) showCode <= hour_ones;
-                        else if (showMode == 1)
+                        if (showMode == 0 || hour_real_num < 5'd12) 
+                            showCode <= hour_ones;
+                        else if (showMode == 1 && hour_real_num >= 5'd12)
                             showCode <= convert0;
-//                            begin
-//                                if (hour_real_num >= 5'd12)
-//                                    begin
-//                                        showCode <= convert0;
-//                                    end
-//                                else if (hour_num[7:4] == 5'd2)
-//                                    begin
-                                        
-//                                        showCode <= convert1;
-//                                    end
-//                             end
                         k <= k + 1;
                     end
                 7:
 //                show hour tens bit
                     begin
                         tubePos <= 8'b0111_1111;
-                        if (showMode == 0) showCode <= hour_tens;
+                        if (showMode == 0 || hour_real_num < 5'd12) showCode <= hour_tens;
                         else if (showMode == 1)
                             begin
-                                if ((hour_real_num > 5'd12 && hour_real_num < 5'd22) || (hour_real_num < 5'd10))
+                                if (hour_real_num < 5'd22 && hour_real_num >= 5'd12)
                                     showCode <= 7'b100_0000;
                                 else 
                                     showCode <= 7'b111_1001;
