@@ -32,6 +32,6 @@ module Counter_60(
     wire [3:0] ones,tens;
     Counter_10 OnesPlace(CP,CR,EN,ones,onesToTensCarryBit);
     Counter_6 TensPlace(onesToTensCarryBit,CR,EN,tens,tensToUpperCarryBit);
-    always @(ones,tens) Q = {tens[3:0],ones[3:0]};
-    always @(tensToUpperCarryBit) carryBit = tensToUpperCarryBit;
+    always @(*) Q = {tens[3:0],ones[3:0]};
+    always @(*) carryBit = tensToUpperCarryBit;
 endmodule

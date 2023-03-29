@@ -29,8 +29,8 @@ module FrequencyDivider_1k(
         begin
 //        for real use
             if (state < 49999) state <= state + 1'b1;
-// //         for sim
-//          if (state < 4) state <= state +1'b1;
+//          for sim
+        //  if (state < 4) state <= state +1'b1;
             else 
                 begin
                     state <= 0;

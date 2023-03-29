@@ -30,7 +30,9 @@ module Clock(
     input show_mode,
     input punctually_report_en,
     input alarm_switch,
-    input set_alarm_time,
+    input set_alarm_en,
+    input set_alarm_time_hour,
+    input set_alarm_time_minute,
     output [7:0] tubePosSignal,
     output [6:0] tubeShowSignal,
     output punctuallyReportSignal,
@@ -43,75 +45,36 @@ module Clock(
     wire [7:0] minute;
     wire [7:0] hour;
     wire [6:0] secondOnesShowCode,secondTensShowCode,minuteOnesShowCode,minuteTensShowCode,hourOnesShowCode,hourTensShowCode;
-    
+    wire [6:0] alarmHourOnesShowCode,alarmHourTensShowCode,alarmMinuteOnesShowCode,alarmMinuteTensShowCode;
     wire secondToMinuteCarryBit,minuteToHourCarryBit;
     
     wire [4:0] hour_real_num;
     assign hour_real_num = hour[3:0] + 10 * hour[7:4];
     
-    FrequencyDivider_1k divider_1k(
-        CP, 
-        CLK_1k
-        );
-    FrequencyDivider_1hz divider_1Hz(
-        CLK_1k, 
-        CR,
-        clock_en, 
-        CLK_1Hz
-        );
+    wire [7:0] alarm_hour_set;
+    wire [7:0] alarm_minute_set;
     
-    TwoToOneSelector minuteInput(
-        secondToMinuteCarryBit, 
-        CLK_1Hz,
-        ~adjust_minute_en, 
-        minuteInputSignal
-        );
+    reg [7:0] alarm_hour,alarm_minute;
+    always @(*) alarm_hour = alarm_hour_set;
+    always @(*) alarm_minute = alarm_minute_set;
+    
+    
+    FrequencyDivider_1k divider_1k(CP, CLK_1k);
+    FrequencyDivider_1hz divider_1Hz(CLK_1k, CR,clock_en, CLK_1Hz);
+    
+    TwoToOneSelector minuteInput(secondToMinuteCarryBit, CLK_1Hz,~adjust_minute_en, minuteInputSignal);
         
-    TwoToOneSelector hourInput(
-        minuteToHourCarryBit, 
-        CLK_1Hz, 
-        ~adjust_hour_en, 
-        hourInputSignal
-    );
+    TwoToOneSelector hourInput(minuteToHourCarryBit, CLK_1Hz, ~adjust_hour_en, hourInputSignal);
     
-    TwoToOneSelector secondInput(
-        CLK_1Hz,
-        1'b0, 
-        ~adjust_hour_en && ~adjust_minute_en,
-        secondInputSignal
-    );
+    TwoToOneSelector secondInput(CLK_1Hz,1'b0, ~adjust_hour_en && ~adjust_minute_en,secondInputSignal);
     
 // Counter_60(input CP, input EN, input CR, output reg [7:0] Q, output reg carryBit)
-    Counter_60 secondCounter (
-        secondInputSignal,
-        second_continue,
-        CR,
-        second,
-        secondToMinuteCarryBit
-        );
-    Counter_60 minuteCounter (
-        minuteInputSignal,
-        clock_en,
-        CR,
-        minute,
-        minuteToHourCarryBit
-        );
-    Counter_24 hourCounter(
-        hourInputSignal,
-        CR,
-        clock_en,
-        hour[3:0],
-        hour[7:4]
-        );
+    Counter_60 secondCounter (secondInputSignal,second_continue,CR,second,secondToMinuteCarryBit);
+    Counter_60 minuteCounter (minuteInputSignal,clock_en,CR,minute,minuteToHourCarryBit);
+    Counter_24 hourCounter(hourInputSignal,CR,clock_en,hour[3:0],hour[7:4]);
     
-    PunctuallyReporter PunctuallyReporter (
-        minute,
-        hour_real_num,
-        punctually_report_en,
-        CLK_1Hz,
-        punctuallyReportSignal
-        );
-    
+    PunctuallyReporter PunctuallyReporter (minute,hour_real_num,punctually_report_en,CLK_1Hz,punctuallyReportSignal);
+
     TubeDecoder secondOnesDecoder(second[3:0],secondOnesShowCode);
     TubeDecoder secondTensDecoder(second[7:4],secondTensShowCode);
     
@@ -121,19 +84,17 @@ module Clock(
     TubeDecoder HourOnesDecoder(hour[3:0],hourOnesShowCode);
     TubeDecoder hourTensDecoder(hour[7:4],hourTensShowCode);
     
-    TubeShower shower(
-        CLK_1k,
-        show_mode,
-        hour_real_num,
-        hour,
-        secondOnesShowCode,
-        secondTensShowCode,
-        minuteOnesShowCode,
-        minuteTensShowCode,
-        hourOnesShowCode,
-        hourTensShowCode,
-        tubePosSignal,
-        tubeShowSignal
-        );
-        
+    TubeDecoder alarmMinuteOnesDecoder(alarm_minute[3:0],alarmMinuteOnesShowCode);
+    TubeDecoder alarmMinuteTensDecoder(alarm_minute[7:4],alarmMinuteTensShowCode);
+    
+    TubeDecoder alarmHourOnesDecoder(alarm_hour[3:0],alarmHourOnesShowCode);
+    TubeDecoder alarmHourTensDecoder(alarm_hour[7:4],alarmHourTensShowCode);
+    
+    TubeShower shower(CLK_1k,show_mode,~set_alarm_en,hour_real_num,hour,secondOnesShowCode,
+    secondTensShowCode,minuteOnesShowCode,minuteTensShowCode,hourOnesShowCode,hourTensShowCode,
+    alarmHourTensShowCode,alarmHourOnesShowCode,alarmMinuteTensShowCode,alarmMinuteOnesShowCode,
+    tubePosSignal,tubeShowSignal);
+    AlarmReporter alarmReporter (alarm_switch,alarm_hour,alarm_minute,hour,minute,CLK_1Hz,alarmReportSignal);
+    AlarmSetter alarmSetter (set_alarm_time_hour && ~set_alarm_en,set_alarm_time_minute && ~set_alarm_en,
+        CLK_1Hz,alarm_hour_set,alarm_minute_set);
 endmodule

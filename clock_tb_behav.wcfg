@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="25530000001fs"></ZoomEndTime>
-      <Cursor1Time time="14940000000fs"></Cursor1Time>
+      <ZoomStartTime time="6539000000fs"></ZoomStartTime>
+      <ZoomEndTime time="9250000001fs"></ZoomEndTime>
+      <Cursor1Time time="7842000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="225"></NameColumnWidth>
-      <ValueColumnWidth column_width="116"></ValueColumnWidth>
+      <NameColumnWidth column_width="331"></NameColumnWidth>
+      <ValueColumnWidth column_width="206"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="25" />
+   <WVObjectSize size="24" />
    <wvobject fp_name="/clock_tb/clock_en" type="logic">
       <obj_property name="ElementShortName">clock_en</obj_property>
       <obj_property name="ObjectShortName">clock_en</obj_property>
@@ -36,10 +36,6 @@
       <obj_property name="ElementShortName">adjust_hour_en</obj_property>
       <obj_property name="ObjectShortName">adjust_hour_en</obj_property>
    </wvobject>
-   <wvobject fp_name="/clock_tb/punctually_report_en" type="logic">
-      <obj_property name="ElementShortName">punctually_report_en</obj_property>
-      <obj_property name="ObjectShortName">punctually_report_en</obj_property>
-   </wvobject>
    <wvobject fp_name="/clock_tb/show_mode" type="logic">
       <obj_property name="ElementShortName">show_mode</obj_property>
       <obj_property name="ObjectShortName">show_mode</obj_property>
@@ -47,15 +43,6 @@
    <wvobject fp_name="/clock_tb/CR" type="logic">
       <obj_property name="ElementShortName">CR</obj_property>
       <obj_property name="ObjectShortName">CR</obj_property>
-   </wvobject>
-   <wvobject fp_name="/clock_tb/tubePosSignal" type="array">
-      <obj_property name="ElementShortName">tubePosSignal[7:0]</obj_property>
-      <obj_property name="ObjectShortName">tubePosSignal[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/clock_tb/tubeShowSignal" type="array">
-      <obj_property name="ElementShortName">tubeShowSignal[6:0]</obj_property>
-      <obj_property name="ObjectShortName">tubeShowSignal[6:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/clock_tb/punctuallyReportSignal" type="logic">
       <obj_property name="ElementShortName">punctuallyReportSignal</obj_property>
@@ -112,13 +99,22 @@
    <wvobject fp_name="/clock_tb/clock/hour_real_num" type="array">
       <obj_property name="ElementShortName">hour_real_num[4:0]</obj_property>
       <obj_property name="ObjectShortName">hour_real_num[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/clock_tb/clock/PunctuallyReporter/reportSignal" type="logic">
       <obj_property name="ElementShortName">reportSignal</obj_property>
       <obj_property name="ObjectShortName">reportSignal</obj_property>
    </wvobject>
-   <wvobject fp_name="/clock_tb/clock/PunctuallyReporter/flashingTime" type="array">
-      <obj_property name="ElementShortName">flashingTime[3:0]</obj_property>
-      <obj_property name="ObjectShortName">flashingTime[3:0]</obj_property>
+   <wvobject fp_name="/clock_tb/clock/alarmSetter/hour_set" type="array">
+      <obj_property name="ElementShortName">hour_set[7:0]</obj_property>
+      <obj_property name="ObjectShortName">hour_set[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/alarmSetter/minute_set" type="array">
+      <obj_property name="ElementShortName">minute_set[7:0]</obj_property>
+      <obj_property name="ObjectShortName">minute_set[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/clock_tb/clock/alarmReporter/reportSignal" type="logic">
+      <obj_property name="ElementShortName">reportSignal</obj_property>
+      <obj_property name="ObjectShortName">reportSignal</obj_property>
    </wvobject>
 </wave_config>

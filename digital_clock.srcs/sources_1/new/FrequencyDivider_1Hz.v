@@ -42,7 +42,7 @@ module FrequencyDivider_1hz(
 //              for real use, here should be 499,but for test, we can change it into 49 or 4
             else if (state < 499) state <= state + 1'b1;
 //              else if (state < 49) state <= state + 1'b1;
-//              else if (state < 4) state <= state +1'b1;
+            //  else if (state < 4) state <= state +1'b1;
             else 
                 begin
                     state <= 0;

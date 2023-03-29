@@ -23,6 +23,7 @@
 module TubeShower(
     input CLK_1k,
     input showMode,//for show mode 0, 24h mode clock;mode 1, 12h mode clock
+    input isSettingAlarm,
     input [4:0] hour_real_num,//lower 4 bits are for hour ones bit,upper 4 bits are for hour tens bit
     input [7:0] hour,
     input [6:0] second_ones,
@@ -31,6 +32,10 @@ module TubeShower(
     input [6:0] minute_tens,
     input [6:0] hour_ones,
     input [6:0] hour_tens,
+    input [6:0] alarm_hour_setting_tens,
+    input [6:0] alarm_hour_setting_ones,
+    input [6:0] alarm_minute_setting_tens,
+    input [6:0] alarm_minute_setting_ones,
     output reg [7:0] tubePos,
     output reg [6:0] showCode
     );
@@ -50,10 +55,11 @@ module TubeShower(
         begin
             case(k)
                 0:
-//                show A or P or none for 12/24 hour switch
+//                show A or P or none for 12/24 hour switch or noting when set alarm
                     begin
                         tubePos <= 8'b1111_1110;
-                        if (showMode == 0) showCode <= 7'b111_1111;
+                        if (isSettingAlarm) showCode <= 7'b111_1111;
+                        else if (showMode == 0) showCode <= 7'b111_1111;
                         else if (showMode == 1)
                             begin
                                 if (hour_real_num >= 5'd12) showCode <= 7'b000_1100;
@@ -69,39 +75,55 @@ module TubeShower(
                         k <= k + 1;
                     end
                 2:
-//                show second ones bit
+//                show second ones bit or noting when set alarm
                     begin
                         tubePos <= 8'b1111_1011;
-                        showCode <= second_ones;
+                        if (isSettingAlarm) showCode <= 7'b111_1111;
+                        else
+                            begin
+                                showCode <= second_ones;
+                            end
                         k <= k + 1;
                     end
                 3:
-//                show second tens bit
+//                show second tens bit or noting when set alarm
                     begin
                         tubePos <= 8'b1111_0111;
-                        showCode <= second_tens;
+                        if (isSettingAlarm) showCode <= 7'b111_1111;
+                        else
+                            begin
+                                showCode <= second_tens;
+                            end
                         k <= k + 1;
                     end
                 4:
 //                show minute ones bit
                     begin
                         tubePos <= 8'b1110_1111;
-                        showCode <= minute_ones;
+                        if (isSettingAlarm) showCode <= alarm_minute_setting_ones;
+                        else
+                            begin
+                                showCode <= minute_ones;
+                            end
                         k <= k + 1;
                     end
                 5:
 //                show mintue tens bit
                     begin
                         tubePos <= 8'b1101_1111;
-                        showCode <= minute_tens;
+                        if (isSettingAlarm) showCode <= alarm_minute_setting_tens;
+                        else
+                            begin
+                                showCode <= minute_tens;
+                            end
                         k <= k + 1;
                     end
                 6:
-                // still some problem please correct in Friday
 //                show hour ones bit
                     begin
                         tubePos <= 8'b1011_1111;
-                        if (showMode == 0 || hour_real_num < 5'd12) 
+                        if (isSettingAlarm) showCode <= alarm_hour_setting_ones;
+                        else if (showMode == 0 || hour_real_num < 5'd12) 
                             showCode <= hour_ones;
                         else if (showMode == 1 && hour_real_num >= 5'd12)
                             showCode <= convert0;
@@ -111,7 +133,8 @@ module TubeShower(
 //                show hour tens bit
                     begin
                         tubePos <= 8'b0111_1111;
-                        if (showMode == 0 || hour_real_num < 5'd12) showCode <= hour_tens;
+                        if (isSettingAlarm) showCode <= alarm_hour_setting_tens;
+                        else if (showMode == 0 || hour_real_num < 5'd12) showCode <= hour_tens;
                         else if (showMode == 1)
                             begin
                                 if (hour_real_num < 5'd22 && hour_real_num >= 5'd12)

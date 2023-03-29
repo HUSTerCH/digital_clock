@@ -30,7 +30,9 @@ module clock_tb;
     reg show_mode;
     reg punctually_report_en;
     reg alarm_switch;
-    reg set_alarm_time;
+    reg set_alarm_en;
+    reg set_alarm_time_hour;
+    reg set_alarm_time_minute;
     wire [7:0]tubePosSignal;
     wire [6:0]tubeShowSignal;
     wire punctuallyReportSignal;
@@ -45,7 +47,9 @@ Clock clock(
      show_mode,
      punctually_report_en,
      alarm_switch,
-     set_alarm_time,
+     set_alarm_en,
+     set_alarm_time_hour,
+     set_alarm_time_minute,
      tubePosSignal,
      tubeShowSignal,
      punctuallyReportSignal,
@@ -61,7 +65,17 @@ Clock clock(
             adjust_minute_en = 1'b1;
             show_mode = 1'b0;
             punctually_report_en = 1'b1;
-            #400000
+            set_alarm_en = 1'b0;
+            set_alarm_time_hour = 1'b1;
+            set_alarm_time_minute = 1'b1;
+            #4000
+            set_alarm_en = 1'b1;
+            adjust_hour_en = 1'b0;
+            adjust_minute_en = 1'b0;
+            #3660
+            adjust_hour_en = 1'b1;
+            adjust_minute_en = 1'b1;
+            alarm_switch = 1;
             $stop;
          end
          

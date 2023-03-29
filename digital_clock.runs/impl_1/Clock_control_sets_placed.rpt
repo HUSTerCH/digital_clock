@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date         : Thu Mar 23 23:35:11 2023
+| Date         : Wed Mar 29 20:16:57 2023
 | Host         : FengSheng running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Clock_control_sets_placed.rpt
 | Design       : Clock
@@ -23,8 +23,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |    20 |
-| Unused register locations in slices containing registers |    96 |
+| Number of unique control sets                            |    25 |
+| Unused register locations in slices containing registers |   116 |
 +----------------------------------------------------------+-------+
 
 
@@ -35,11 +35,9 @@ Table of Contents
 | Fanout | Control Sets |
 +--------+--------------+
 |      1 |            7 |
-|      2 |            2 |
-|      4 |            6 |
+|      4 |           14 |
 |      5 |            1 |
 |      7 |            1 |
-|      8 |            1 |
 |      9 |            1 |
 |    16+ |            1 |
 +--------+--------------+
@@ -51,41 +49,46 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               7 |            7 |
-| No           | No                    | Yes                    |               3 |            2 |
+| No           | No                    | No                     |               9 |            7 |
+| No           | No                    | Yes                    |               1 |            1 |
 | No           | Yes                   | No                     |              16 |            4 |
-| Yes          | No                    | No                     |              17 |            6 |
-| Yes          | No                    | Yes                    |              29 |           12 |
-| Yes          | Yes                   | No                     |               8 |            5 |
+| Yes          | No                    | No                     |               1 |            1 |
+| Yes          | No                    | Yes                    |              33 |           17 |
+| Yes          | Yes                   | No                     |              40 |           14 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-----------------------------------------+------------------------------------+------------------------------+------------------+----------------+
-|               Clock Signal              |            Enable Signal           |       Set/Reset Signal       | Slice Load Count | Bel Load Count |
-+-----------------------------------------+------------------------------------+------------------------------+------------------+----------------+
-|  minuteCounter/OnesPlace/CLK            |                                    |                              |                1 |              1 |
-|  secondCounter/OnesPlace/CLK            |                                    |                              |                1 |              1 |
-|  secondCounter/TensPlace/carryBit_reg_0 |                                    |                              |                1 |              1 |
-|  divider_1Hz/CLK_1Hz                    | punctually_report_en_IBUF          | PunctuallyReporter/hasReport |                1 |              1 |
-|  divider_1Hz/CLK                        |                                    |                              |                1 |              1 |
-|  divider_1k/CLK                         |                                    | divider_1Hz/CR               |                1 |              1 |
-|  CP_IBUF_BUFG                           |                                    |                              |                1 |              1 |
-|  minuteCounter/TensPlace/carryBit_reg_0 |                                    | divider_1Hz/CR               |                1 |              2 |
-|  divider_1Hz/CLK_1Hz                    |                                    |                              |                2 |              2 |
-|  minuteCounter/OnesPlace/CLK            | clock_en_IBUF                      | divider_1Hz/CR               |                2 |              4 |
-|  minuteCounter/TensPlace/carryBit_reg_0 | clock_en_IBUF                      | divider_1Hz/CR               |                3 |              4 |
-|  secondCounter/OnesPlace/CLK            | second_continue_IBUF               | divider_1Hz/CR               |                2 |              4 |
-|  secondCounter/TensPlace/carryBit_reg_0 | clock_en_IBUF                      | divider_1Hz/CR               |                2 |              4 |
-|  divider_1Hz/CLK                        | second_continue_IBUF               | divider_1Hz/CR               |                1 |              4 |
-|  divider_1k/CLK                         | shower/FSM_sequential_k[3]_i_1_n_0 |                              |                1 |              4 |
-|  divider_1Hz/CLK_1Hz                    | punctually_report_en_IBUF          |                              |                1 |              5 |
-|  divider_1k/CLK                         | shower/showCode[6]_i_2_n_0         | shower/showCode0             |                4 |              7 |
-|  divider_1k/CLK                         | shower/tubePos[7]_i_1_n_0          |                              |                4 |              8 |
-|  divider_1k/CLK                         | clock_en_IBUF                      | divider_1Hz/CR               |                2 |              9 |
-|  CP_IBUF_BUFG                           |                                    | divider_1k/clear             |                4 |             16 |
-+-----------------------------------------+------------------------------------+------------------------------+------------------+----------------+
++------------------------------------------+------------------------------------+------------------------------------+------------------+----------------+
+|               Clock Signal               |            Enable Signal           |          Set/Reset Signal          | Slice Load Count | Bel Load Count |
++------------------------------------------+------------------------------------+------------------------------------+------------------+----------------+
+|  minuteCounter/OnesPlace/CLK             |                                    |                                    |                1 |              1 |
+|  secondCounter/OnesPlace/CLK             |                                    |                                    |                1 |              1 |
+|  secondCounter/TensPlace/carryBit_reg_0  |                                    |                                    |                1 |              1 |
+|  divider_1Hz/CLK_1Hz                     | punctually_report_en_IBUF          |                                    |                1 |              1 |
+|  divider_1Hz/CLK_1Hz_reg_0               |                                    |                                    |                1 |              1 |
+|  divider_1k/CLK_1k                       |                                    | divider_1Hz/CR                     |                1 |              1 |
+|  CP_IBUF_BUFG                            |                                    |                                    |                1 |              1 |
+|  alarmSetter/onesToTensCarryBit          | alarmSetter/minute_set[3]_i_2_n_0  | alarmSetter/minute_set[7]_i_1_n_0  |                1 |              4 |
+|  minuteCounter/OnesPlace/CLK             | clock_en_IBUF                      | divider_1Hz/CR                     |                3 |              4 |
+|  minuteCounter/TensPlace/hourInputSignal | hourCounter/Q_tens[3]_i_1_n_0      | divider_1Hz/CR                     |                3 |              4 |
+|  minuteCounter/TensPlace/hourInputSignal | clock_en_IBUF                      | divider_1Hz/CR                     |                2 |              4 |
+|  secondCounter/OnesPlace/CLK             | second_continue_IBUF               | divider_1Hz/CR                     |                2 |              4 |
+|  secondCounter/TensPlace/carryBit_reg_0  | clock_en_IBUF                      | divider_1Hz/CR                     |                3 |              4 |
+|  divider_1Hz/CLK_1Hz                     |                                    |                                    |                2 |              4 |
+|  divider_1Hz/CLK_1Hz                     | alarmSetter/minute_set[3]_i_2_n_0  | alarmSetter/minute_set[3]_i_1_n_0  |                1 |              4 |
+|  divider_1Hz/CLK_1Hz                     | alarmSetter/hour_set[3]_i_2_n_0    | alarmSetter/hour_set[3]_i_1_n_0    |                1 |              4 |
+|  divider_1Hz/CLK_1Hz                     | alarmSetter/hour_set[7]_i_2_n_0    | alarmSetter/hour_set[7]_i_1_n_0    |                1 |              4 |
+|  divider_1Hz/CLK_1Hz_reg_0               | second_continue_IBUF               | divider_1Hz/CR                     |                1 |              4 |
+|  divider_1k/CLK_1k                       | shower/FSM_sequential_k[3]_i_2_n_0 | shower/FSM_sequential_k[3]_i_1_n_0 |                1 |              4 |
+|  divider_1k/CLK_1k                       | shower/tubePos[7]_i_2_n_0          | shower/tubePos[3]_i_1_n_0          |                2 |              4 |
+|  divider_1k/CLK_1k                       | shower/tubePos[7]_i_2_n_0          | shower/tubePos[7]_i_1_n_0          |                1 |              4 |
+|  divider_1Hz/CLK_1Hz                     | punctually_report_en_IBUF          | minuteCounter/TensPlace/SR[0]      |                2 |              5 |
+|  divider_1k/CLK_1k                       | shower/showCode[6]_i_2_n_0         | shower/showCode0                   |                4 |              7 |
+|  divider_1k/CLK_1k                       | clock_en_IBUF                      | divider_1Hz/CR                     |                3 |              9 |
+|  CP_IBUF_BUFG                            |                                    | divider_1k/clear                   |                4 |             16 |
++------------------------------------------+------------------------------------+------------------------------------+------------------+----------------+
 
 

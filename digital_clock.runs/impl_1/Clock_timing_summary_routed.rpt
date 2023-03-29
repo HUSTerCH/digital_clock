@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date         : Thu Mar 23 23:35:59 2023
+| Date         : Wed Mar 29 20:17:27 2023
 | Host         : FengSheng running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -file Clock_timing_summary_routed.rpt -pb Clock_timing_summary_routed.pb -rpx Clock_timing_summary_routed.rpx -warn_on_violation
 | Design       : Clock
@@ -54,17 +54,19 @@ Table of Contents
 --------------------
  There are 17 register/latch pins with no clock driven by root clock pin: CP (HIGH)
 
- There are 11 register/latch pins with no clock driven by root clock pin: adjust_hour_en (HIGH)
+ There are 13 register/latch pins with no clock driven by root clock pin: adjust_hour_en (HIGH)
 
  There are 10 register/latch pins with no clock driven by root clock pin: adjust_minute_en (HIGH)
 
- There are 24 register/latch pins with no clock driven by root clock pin: divider_1Hz/CLK_1Hz_reg/Q (HIGH)
+ There are 4 register/latch pins with no clock driven by root clock pin: alarmSetter/onesToTensCarryBit_reg/Q (HIGH)
+
+ There are 40 register/latch pins with no clock driven by root clock pin: divider_1Hz/CLK_1Hz_reg/Q (HIGH)
 
  There are 29 register/latch pins with no clock driven by root clock pin: divider_1k/CLK_1k_reg/Q (HIGH)
 
  There are 5 register/latch pins with no clock driven by root clock pin: minuteCounter/OnesPlace/carryBit_reg/Q (HIGH)
 
- There are 6 register/latch pins with no clock driven by root clock pin: minuteCounter/TensPlace/carryBit_reg/Q (HIGH)
+ There are 8 register/latch pins with no clock driven by root clock pin: minuteCounter/TensPlace/carryBit_reg/Q (HIGH)
 
  There are 5 register/latch pins with no clock driven by root clock pin: secondCounter/OnesPlace/carryBit_reg/Q (HIGH)
 
@@ -83,21 +85,21 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 190 pins that are not constrained for maximum delay. (HIGH)
+ There are 264 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
 5. checking no_input_delay
 --------------------------
- There are 5 input ports with no input delay specified. (HIGH)
+ There are 9 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
 6. checking no_output_delay
 ---------------------------
- There are 16 ports with no output delay specified. (HIGH)
+ There are 17 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
