@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date         : Wed Mar 29 20:17:26 2023
+| Date         : Fri Mar 31 19:39:52 2023
 | Host         : FengSheng running 64-bit major release  (build 9200)
 | Command      : report_drc -file Clock_drc_routed.rpt -pb Clock_drc_routed.pb -rpx Clock_drc_routed.rpx
 | Design       : Clock
@@ -50,12 +50,12 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net divider_1Hz/CLK_1Hz_reg_0 is a gated clock net sourced by a combinational pin divider_1Hz/Q[3]_i_2__0/O, cell divider_1Hz/Q[3]_i_2__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net divider_1Hz/CLK is a gated clock net sourced by a combinational pin divider_1Hz/Q[3]_i_2__0/O, cell divider_1Hz/Q[3]_i_2__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net minuteCounter/TensPlace/hourInputSignal is a gated clock net sourced by a combinational pin minuteCounter/TensPlace/Q_ones[3]_i_2/O, cell minuteCounter/TensPlace/Q_ones[3]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net minuteCounter/TensPlace/carryBit_reg_0 is a gated clock net sourced by a combinational pin minuteCounter/TensPlace/Q_ones[3]_i_2/O, cell minuteCounter/TensPlace/Q_ones[3]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#3 Warning
@@ -71,8 +71,8 @@ Related violations: <none>
 
 PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT minuteCounter/TensPlace/Q_ones[3]_i_2 is driving clock pin of 8 cells. This could lead to large hold time violations. Involved cells are:
-hourCounter/Q_ones_reg[0], hourCounter/Q_ones_reg[1], hourCounter/Q_ones_reg[2], hourCounter/Q_ones_reg[3], hourCounter/Q_tens_reg[0], hourCounter/Q_tens_reg[1], hourCounter/Q_tens_reg[2], hourCounter/Q_tens_reg[3]
+A LUT minuteCounter/TensPlace/Q_ones[3]_i_2 is driving clock pin of 6 cells. This could lead to large hold time violations. Involved cells are:
+hourCounter/Q_ones_reg[0], hourCounter/Q_ones_reg[1], hourCounter/Q_ones_reg[2], hourCounter/Q_ones_reg[3], hourCounter/Q_tens_reg[0], hourCounter/Q_tens_reg[1]
 Related violations: <none>
 
 PLHOLDVIO-2#3 Warning

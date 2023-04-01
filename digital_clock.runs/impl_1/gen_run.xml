@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1680092187">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1680262735">
   <File Type="BITSTR-BMM" Name="Clock_bd.bmm"/>
   <File Type="OPT-METHODOLOGY-DRC" Name="Clock_methodology_drc_opted.rpt"/>
   <File Type="INIT-TIMING" Name="Clock_timing_summary_init.rpt"/>
@@ -121,6 +121,13 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/FrequencyDivider_1k.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/FrequencyDivider_2Hz.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

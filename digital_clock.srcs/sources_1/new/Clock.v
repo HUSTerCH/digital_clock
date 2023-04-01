@@ -38,8 +38,9 @@ module Clock(
     output punctuallyReportSignal,
     output alarmReportSignal
     );
-    wire CLK_1k,CLK_1Hz;
+    wire CLK_1k,CLK_1Hz,CLK_2Hz;
     wire secondInputSignal,minuteInputSignal,hourInputSignal;
+    wire isPunctuallyReporting;
 // below 3 wire net,lower 3 bits is for ones bit,and upper 3bits is for tens bit
     wire [7:0] second;
     wire [7:0] minute;
@@ -61,6 +62,7 @@ module Clock(
     
     FrequencyDivider_1k divider_1k(CP, CLK_1k);
     FrequencyDivider_1hz divider_1Hz(CLK_1k, CR,clock_en, CLK_1Hz);
+    FrequencyDivider_2hz divider_2Hz(CLK_1k, CR,clock_en, CLK_2Hz);
     
     TwoToOneSelector minuteInput(secondToMinuteCarryBit, CLK_1Hz,~adjust_minute_en, minuteInputSignal);
         
@@ -73,7 +75,7 @@ module Clock(
     Counter_60 minuteCounter (minuteInputSignal,clock_en,CR,minute,minuteToHourCarryBit);
     Counter_24 hourCounter(hourInputSignal,CR,clock_en,hour[3:0],hour[7:4]);
     
-    PunctuallyReporter PunctuallyReporter (minute,hour_real_num,punctually_report_en,CLK_1Hz,punctuallyReportSignal);
+    PunctuallyReporter PunctuallyReporter (minute,hour_real_num,punctually_report_en,CLK_1Hz,isPunctuallyReporting,punctuallyReportSignal);
 
     TubeDecoder secondOnesDecoder(second[3:0],secondOnesShowCode);
     TubeDecoder secondTensDecoder(second[7:4],secondTensShowCode);
@@ -90,9 +92,9 @@ module Clock(
     TubeDecoder alarmHourOnesDecoder(alarm_hour[3:0],alarmHourOnesShowCode);
     TubeDecoder alarmHourTensDecoder(alarm_hour[7:4],alarmHourTensShowCode);
     
-    TubeShower shower(CLK_1k,show_mode,~set_alarm_en,hour_real_num,hour,secondOnesShowCode,
-    secondTensShowCode,minuteOnesShowCode,minuteTensShowCode,hourOnesShowCode,hourTensShowCode,
-    alarmHourTensShowCode,alarmHourOnesShowCode,alarmMinuteTensShowCode,alarmMinuteOnesShowCode,
+    TubeShower shower(CLK_1k,CLK_2Hz,show_mode,~set_alarm_en,isPunctuallyReporting,
+    hour_real_num,hour,secondOnesShowCode,secondTensShowCode,minuteOnesShowCode,minuteTensShowCode,hourOnesShowCode,
+    hourTensShowCode,alarmHourTensShowCode,alarmHourOnesShowCode,alarmMinuteTensShowCode,alarmMinuteOnesShowCode,
     tubePosSignal,tubeShowSignal);
     AlarmReporter alarmReporter (alarm_switch,alarm_hour,alarm_minute,hour,minute,CLK_1Hz,alarmReportSignal);
     AlarmSetter alarmSetter (set_alarm_time_hour && ~set_alarm_en,set_alarm_time_minute && ~set_alarm_en,

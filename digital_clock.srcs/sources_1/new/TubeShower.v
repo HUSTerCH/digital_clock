@@ -22,8 +22,10 @@
 
 module TubeShower(
     input CLK_1k,
+    input CLK_2Hz,
     input showMode,//for show mode 0, 24h mode clock;mode 1, 12h mode clock
     input isSettingAlarm,
+    input isPunctuallyReporting,// when is punctually reporting HH:mm flashs per 0.5 Sec,last two bit show flash time
     input [4:0] hour_real_num,//lower 4 bits are for hour ones bit,upper 4 bits are for hour tens bit
     input [7:0] hour,
     input [6:0] second_ones,
@@ -58,7 +60,10 @@ module TubeShower(
 //                show A or P or none for 12/24 hour switch or noting when set alarm
                     begin
                         tubePos <= 8'b1111_1110;
+                        // when is setting alarm, show nothing
                         if (isSettingAlarm) showCode <= 7'b111_1111;
+                        // when is punctually reporting,show hour ones bit
+                        else if (isPunctuallyReporting) showCode <= hour_ones;
                         else if (showMode == 0) showCode <= 7'b111_1111;
                         else if (showMode == 1)
                             begin
@@ -71,7 +76,9 @@ module TubeShower(
 //                show nothing
                     begin
                         tubePos <= 8'b1111_1101;
-                        showCode <= 7'b111_1111;
+                        // when is punctually reporting,show hour tens bit
+                        if (isPunctuallyReporting) showCode <= hour_tens;
+                        else showCode <= 7'b111_1111;
                         k <= k + 1;
                     end
                 2:
@@ -101,10 +108,12 @@ module TubeShower(
                     begin
                         tubePos <= 8'b1110_1111;
                         if (isSettingAlarm) showCode <= alarm_minute_setting_ones;
-                        else
+                        else if (isPunctuallyReporting)
                             begin
-                                showCode <= minute_ones;
+                                if (CLK_2Hz == 1'b1) showCode <= minute_ones;
+                                else showCode <= 7'b111_1111;
                             end
+                        else showCode <= minute_ones;
                         k <= k + 1;
                     end
                 5:
@@ -112,10 +121,12 @@ module TubeShower(
                     begin
                         tubePos <= 8'b1101_1111;
                         if (isSettingAlarm) showCode <= alarm_minute_setting_tens;
-                        else
+                        else if (isPunctuallyReporting)
                             begin
-                                showCode <= minute_tens;
+                                if (CLK_2Hz == 1'b1) showCode <= minute_tens;
+                                else showCode <= 7'b111_1111;
                             end
+                        else showCode <= minute_tens;
                         k <= k + 1;
                     end
                 6:
@@ -123,10 +134,24 @@ module TubeShower(
                     begin
                         tubePos <= 8'b1011_1111;
                         if (isSettingAlarm) showCode <= alarm_hour_setting_ones;
-                        else if (showMode == 0 || hour_real_num < 5'd12) 
-                            showCode <= hour_ones;
-                        else if (showMode == 1 && hour_real_num >= 5'd12)
-                            showCode <= convert0;
+                        else if (isPunctuallyReporting)
+                            begin
+                                if (CLK_2Hz == 1'b0) showCode <= 7'b111_1111;
+                                else
+                                    begin
+                                        if (showMode == 0 || hour_real_num <= 5'd12) 
+                                            showCode <= hour_ones;
+                                        else if (showMode == 1 && hour_real_num > 5'd12)
+                                            showCode <= convert0;
+                                    end
+                            end
+                        else
+                            begin
+                                if (showMode == 0 || hour_real_num <= 5'd12) 
+                                    showCode <= hour_ones;
+                            else if (showMode == 1 && hour_real_num > 5'd12)
+                                    showCode <= convert0;
+                            end
                         k <= k + 1;
                     end
                 7:
@@ -134,13 +159,29 @@ module TubeShower(
                     begin
                         tubePos <= 8'b0111_1111;
                         if (isSettingAlarm) showCode <= alarm_hour_setting_tens;
-                        else if (showMode == 0 || hour_real_num < 5'd12) showCode <= hour_tens;
-                        else if (showMode == 1)
+                        else if (isPunctuallyReporting)
                             begin
-                                if (hour_real_num < 5'd22 && hour_real_num >= 5'd12)
-                                    showCode <= 7'b100_0000;
-                                else 
-                                    showCode <= 7'b111_1001;
+                                if (CLK_2Hz == 1'b0) showCode <= 7'b111_1111;
+                                else
+                                    if (showMode == 0 || hour_real_num <= 5'd12) showCode <= hour_tens;
+                                    else if (showMode == 1)
+                                        begin
+                                            if (hour_real_num < 5'd22 && hour_real_num > 5'd12)
+                                                showCode <= 7'b100_0000;
+                                            else
+                                                showCode <= 7'b111_1001;
+                                        end
+                            end
+                        else
+                            begin
+                                if (showMode == 0 || hour_real_num <= 5'd12) showCode <= hour_tens;
+                                else if (showMode == 1)
+                                    begin
+                                        if (hour_real_num < 5'd22 && hour_real_num > 5'd12)
+                                            showCode <= 7'b100_0000;
+                                        else 
+                                            showCode <= 7'b111_1001;
+                                    end
                             end
                         k <= k + 1;
                     end

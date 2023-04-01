@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date         : Wed Mar 29 20:16:21 2023
+| Date         : Fri Mar 31 19:38:48 2023
 | Host         : FengSheng running 64-bit major release  (build 9200)
 | Command      : report_utilization -file Clock_utilization_synth.rpt -pb Clock_utilization_synth.pb
 | Design       : Clock
@@ -30,11 +30,11 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |  183 |     0 |     63400 |  0.29 |
-|   LUT as Logic          |  183 |     0 |     63400 |  0.29 |
+| Slice LUTs*             |  196 |     0 |     63400 |  0.31 |
+|   LUT as Logic          |  196 |     0 |     63400 |  0.31 |
 |   LUT as Memory         |    0 |     0 |     19000 |  0.00 |
-| Slice Registers         |  100 |     0 |    126800 |  0.08 |
-|   Register as Flip Flop |  100 |     0 |    126800 |  0.08 |
+| Slice Registers         |  111 |     0 |    126800 |  0.09 |
+|   Register as Flip Flop |  111 |     0 |    126800 |  0.09 |
 |   Register as Latch     |    0 |     0 |    126800 |  0.00 |
 | F7 Muxes                |    0 |     0 |     31700 |  0.00 |
 | F8 Muxes                |    0 |     0 |     15850 |  0.00 |
@@ -55,9 +55,9 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
-| 34    |          Yes |           - |        Reset |
-| 15    |          Yes |         Set |            - |
-| 51    |          Yes |       Reset |            - |
+| 32    |          Yes |           - |        Reset |
+| 4     |          Yes |         Set |            - |
+| 75    |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -112,7 +112,7 @@ Table of Contents
 +------------+------+-------+-----------+-------+
 |  Site Type | Used | Fixed | Available | Util% |
 +------------+------+-------+-----------+-------+
-| BUFGCTRL   |    1 |     0 |        32 |  3.13 |
+| BUFGCTRL   |    2 |     0 |        32 |  6.25 |
 | BUFIO      |    0 |     0 |        24 |  0.00 |
 | MMCME2_ADV |    0 |     0 |         6 |  0.00 |
 | PLLE2_ADV  |    0 |     0 |         6 |  0.00 |
@@ -146,19 +146,19 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| LUT4     |   75 |                 LUT |
-| LUT6     |   64 |                 LUT |
-| FDRE     |   51 |        Flop & Latch |
-| LUT5     |   41 |                 LUT |
-| FDCE     |   34 |        Flop & Latch |
-| LUT2     |   33 |                 LUT |
-| LUT3     |   23 |                 LUT |
+| LUT6     |   99 |                 LUT |
+| FDRE     |   75 |        Flop & Latch |
+| LUT4     |   50 |                 LUT |
+| LUT5     |   44 |                 LUT |
+| FDCE     |   32 |        Flop & Latch |
+| LUT3     |   28 |                 LUT |
 | OBUF     |   17 |                  IO |
-| FDSE     |   15 |        Flop & Latch |
+| LUT2     |   12 |                 LUT |
 | IBUF     |   12 |                  IO |
 | LUT1     |   11 |                 LUT |
+| FDSE     |    4 |        Flop & Latch |
 | CARRY4   |    4 |          CarryLogic |
-| BUFG     |    1 |               Clock |
+| BUFG     |    2 |               Clock |
 +----------+------+---------------------+
 
 

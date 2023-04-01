@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date         : Wed Mar 29 20:16:55 2023
+| Date         : Fri Mar 31 19:39:23 2023
 | Host         : FengSheng running 64-bit major release  (build 9200)
 | Command      : report_drc -file Clock_drc_opted.rpt -pb Clock_drc_opted.pb -rpx Clock_drc_opted.rpx
 | Design       : Clock
@@ -55,8 +55,8 @@ Related violations: <none>
 
 PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT minuteCounter/TensPlace/Q_ones[3]_i_2 is driving clock pin of 8 cells. This could lead to large hold time violations. Involved cells are:
-hourCounter/Q_ones_reg[0], hourCounter/Q_ones_reg[1], hourCounter/Q_ones_reg[2], hourCounter/Q_ones_reg[3], hourCounter/Q_tens_reg[0], hourCounter/Q_tens_reg[1], hourCounter/Q_tens_reg[2], hourCounter/Q_tens_reg[3]
+A LUT minuteCounter/TensPlace/Q_ones[3]_i_2 is driving clock pin of 6 cells. This could lead to large hold time violations. Involved cells are:
+hourCounter/Q_ones_reg[0], hourCounter/Q_ones_reg[1], hourCounter/Q_ones_reg[2], hourCounter/Q_ones_reg[3], hourCounter/Q_tens_reg[0], hourCounter/Q_tens_reg[1]
 Related violations: <none>
 
 PLHOLDVIO-2#3 Warning

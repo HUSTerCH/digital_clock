@@ -39,6 +39,7 @@ read_verilog -library xil_defaultlib {
   D:/vivado_project/digital_clock/digital_clock.srcs/sources_1/new/Counter_60.v
   D:/vivado_project/digital_clock/digital_clock.srcs/sources_1/new/FrequencyDivider_1Hz.v
   D:/vivado_project/digital_clock/digital_clock.srcs/sources_1/new/FrequencyDivider_1k.v
+  D:/vivado_project/digital_clock/digital_clock.srcs/sources_1/new/FrequencyDivider_2Hz.v
   D:/vivado_project/digital_clock/digital_clock.srcs/sources_1/new/PunctuallyReporter.v
   D:/vivado_project/digital_clock/digital_clock.srcs/sources_1/new/TubeDecoder.v
   D:/vivado_project/digital_clock/digital_clock.srcs/sources_1/new/TubeShower.v

@@ -25,6 +25,7 @@ module PunctuallyReporter(
     input [4:0] hour,
     input EN,
     input CLK_1Hz,
+    output reg isReporting = 0,
     output reg reportSignal = 0
     );
     reg [5:0] flashingTime = 0;
@@ -43,7 +44,11 @@ module PunctuallyReporter(
                     flashingTime <= 1'b0;
                     hasReport <= 1'b1;
                 end
+                
             if (minute[7:0] > 0)
                 hasReport <= 1'b0;
+            if (flashingTime > 0)
+                isReporting <= 1;
+            else isReporting <= 0;
         end      
 endmodule
